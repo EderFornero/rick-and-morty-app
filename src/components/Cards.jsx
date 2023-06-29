@@ -17,7 +17,7 @@ export default function Cards({ characters, onClose }) {
           onClose={onClose}
         />
       ))}
-      <div style={{width: '31.5%'}}></div>
+      <div style={{width: '32.3%'}}></div>
     </div>
   );
 }

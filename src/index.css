@@ -2,10 +2,10 @@
 
 body {
   margin: 0;
+  padding: 0;
   font-family: "Noto Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(216, 187, 140);
 }
 
 code {

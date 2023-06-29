@@ -1,5 +1,26 @@
 .App {
   text-align: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.background {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("./components/Images/fondo.webp");
+  background-size: cover;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.background:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(76, 10, 104);
+  position: absolute;
+  opacity: 0.5;
 }
 
 .cards-div {
@@ -8,8 +29,41 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: relative;
+}
+
+.divDelete{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.deleteButton {
+  display: flex;
+  justify-content: center;
 }
 
 .deleteButton:hover {
   cursor: pointer;
+}
+
+.card-image{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.card-image img{
+  width: 70%;
+  object-fit: cover;
+}
+
+
+
+/*card content*/
+.card__content {
+  background: rgb(5, 6, 45);
+  border-radius: 17px;
+  width: 100%;
+  height: 100%;
 }

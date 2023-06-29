@@ -2,23 +2,33 @@ import { useState } from "react";
 import styled from "styled-components";
 
 export default function SearchBar({ onSearch }) {
-
   const [id, setId] = useState("");
 
   const handleChange = (e) => {
-    setId(e.target.value)
-  }
+    setId(e.target.value);
+  };
 
   return (
     <Div>
-      <Input onChange={handleChange} value={id} type="search" placeholder="Search here..." />
-      <Button onClick={() => {onSearch(id); setId('')}}>Search</Button>
+      <Input
+        onChange={handleChange}
+        value={id}
+        type="text"
+        placeholder="Search here..."
+      />
+      <Button
+        onClick={() => {
+          onSearch(id);
+          setId("");
+        }}
+      >
+        Search
+      </Button>
     </Div>
   );
 }
 
 const Div = styled.div`
-  margin: 15px;
   width: 100%;
   min-height: 30px;
   display: flex;
@@ -27,29 +37,69 @@ const Div = styled.div`
 
 const Input = styled.input`
   margin-left: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  border: none;
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
   font-size: 15px;
-  height: auto;
-  margin: 0;
-  outline: 0;
-  background-color: #ffe4c4;
-  color: #64696d;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
 `;
 
 const Button = styled.button`
-  width: 100px;
-  margin-left: 15px;
-  border-radius: 10px;
-  border: none;
-  background: #ffe4c4;
-  color: #000;
+  margin-left: 10px;
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+
+  &::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: 0.7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+  }
 
   &:hover {
-    color: #fff;
-    background: #556b2f;
-    transition: all ease 0.3s;
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em 0.25em var(--glow-color),
+      0 0 4em 2em var(--glow-spread-color),
+      inset 0 0 0.75em 0.25em var(--glow-color);
+  }
+
+  &:active {
+    box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+      0 0 2.5em 2em var(--glow-spread-color),
+      inset 0 0 0.5em 0.25em var(--glow-color);
   }
 `;
