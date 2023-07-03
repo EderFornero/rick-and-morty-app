@@ -1,21 +1,21 @@
 const validation = (userData) => {
   const errors = {};
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(userData.email)) {
-    errors.email = "El email ingresado no es válido";
+    errors.email = "Invalid email";
   }
   if (!userData.email) {
-    errors.email = "Debe ingresar un usuario";
+    errors.email = "You must enter an email";
   }
   if (userData.email.length > 35) {
-    errors.email = "El email no debe superar los 35 caracteres";
+    errors.email = "The email must not exceed 35 characters";
   }
 
   if (!/.*\d+.*/.test(userData.password)) {
-    errors.password = "La contraseña debe tener al menos un número";
+    errors.password = "The password must have at least one number";
   }
 
   if (userData.password.length < 6 || userData.password.length > 10) {
-    errors.password = "La contraseña debe ser de 6 a 10 caracteres";
+    errors.password = "The password must be 6-10 characters";
   }
 
   return errors;

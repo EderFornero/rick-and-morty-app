@@ -3,7 +3,7 @@ import "../App.css";
 import styled from "styled-components";
 import validation from "./Validations";
 
-function Form({login}) {
+function Form({ login }) {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -25,40 +25,45 @@ function Form({login}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(userData);
-  }
+  };
+  
 
   return (
-    <div className="form-container">
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-email">
-          <label for="email">Email</label>
-          <input
-            placeholder="User email"
-            type="text"
-            id="email"
-            name="email"
-            required=""
-            value={userData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <p style={{color: 'white'}}>{errors.email}</p>}
-        </div>
-        <div className="form-email">
-          <label for="email">Password</label>
-          <input
-            placeholder="Password"
-            type="password"
-            id="password"
-            name="password"
-            required=""
-            value={userData.password}
-            onChange={handleChange}
-          />
-          {errors.password && <p style={{color: 'white'}}>{errors.password}</p>}
-        </div>
+    <div className="div-form-container">
+      <div className="form-container">
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-email">
+            <label for="email">Email</label>
+            <input
+              placeholder="Write: 'test@gmail.com'"
+              type="text"
+              id="email"
+              name="email"
+              required=""
+              value={userData.email}
+              onChange={handleChange}
+            />
+            {errors.email && <p style={{ color: "white" }}>{errors.email}</p>}
+          </div>
+          <div className="form-email">
+            <label for="email">Password</label>
+            <input
+              placeholder="Write: '123ada'"
+              type="password"
+              id="password"
+              name="password"
+              required=""
+              value={userData.password}
+              onChange={handleChange}
+            />
+            {errors.password && (
+              <p style={{ color: "white" }}>{errors.password}</p>
+            )}
+          </div>
 
-        <Button type="submit">Submit</Button>
-      </form>
+          <Button onSubmit={handleSubmit} type="submit">Submit</Button>
+        </form>
+      </div>
     </div>
   );
 }

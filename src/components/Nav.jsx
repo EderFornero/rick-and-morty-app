@@ -1,4 +1,5 @@
 import React from "react";
+import "../App.css";
 //components
 import SearchBar from "./SearchBar";
 import styled from "styled-components";
@@ -17,6 +18,9 @@ function Nav({ onSearch }) {
         </Link>
         <Link to="/about">
           <Button>About</Button>
+        </Link>
+        <Link to="/favorites">
+          <Button>Favorites</Button>
         </Link>
       </div>
     </Div>
@@ -78,5 +82,12 @@ const Button = styled.button`
     box-shadow: 0 0 0.6em 0.25em var(--glow-color),
       0 0 2.5em 2em var(--glow-spread-color),
       inset 0 0 0.5em 0.25em var(--glow-color);
+  }
+  &:focus {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em 0.25em var(--glow-color),
+      0 0 4em 2em var(--glow-spread-color),
+      inset 0 0 0.75em 0.25em var(--glow-color);
   }
 `;

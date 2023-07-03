@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "../App.css";
 import styled from "styled-components";
-import DeleteSvg from "./Svg/DeleteSvg.jsx";
 //router
 import { Link } from "react-router-dom";
 //redux
@@ -11,7 +10,7 @@ import { connect } from "react-redux";
 import FavIcon from "./Svg/FavIcon";
 import UnFavIcon from "./Svg/UnFavIcon";
 
-function Card({
+function FavCard({
   id,
   name,
   status,
@@ -19,7 +18,6 @@ function Card({
   gender,
   origin,
   image,
-  onClose,
   addFav,
   removeFav,
   myFavorites,
@@ -33,7 +31,7 @@ function Card({
     }
     if (!isFav) {
       setIsFav(true);
-      addFav({ id, name, status, species, gender, origin, image, onClose });
+      addFav({ id, name, status, species, gender, origin, image });
     }
   };
 
@@ -48,20 +46,13 @@ function Card({
   return (
     <Div>
       <div className="card__content">
-        <div className="divDelete">
+        <div className="divFavorites">
           <button
             style={{ border: "none", background: "none" }}
             onClick={handleFavorite}
             className="favButton"
           >
             {isFav ? <UnFavIcon /> : <FavIcon />}
-          </button>
-          <button
-            style={{ border: "none", background: "none" }}
-            className="deleteButton"
-            onClick={() => onClose(id)}
-          >
-            <DeleteSvg />
           </button>
         </div>
         <Link to={`/detail/${id}`}>
@@ -87,8 +78,6 @@ function Card({
   );
 }
 
-//redux
-
 const mapStateToProps = (state) => {
   return {
     myFavorites: state.myFavorites,
@@ -106,7 +95,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(FavCard);
 
 //styles
 

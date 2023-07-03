@@ -14,7 +14,7 @@ export default function SearchBar({ onSearch }) {
         onChange={handleChange}
         value={id}
         type="text"
-        placeholder="Search here..."
+        placeholder="Look for a char... Ex: 22"
       />
       <Button
         onClick={() => {

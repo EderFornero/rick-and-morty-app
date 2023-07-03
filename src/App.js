@@ -12,8 +12,9 @@ import Form from "./components/Form";
 import axios from "axios";
 //router
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import Favorites from "./components/Favorites";
 
-const email = "prueba@gmail.com";
+const email = "test@gmail.com";
 const password = "123ada";
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
         />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>
