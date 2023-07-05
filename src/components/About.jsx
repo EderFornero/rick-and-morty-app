@@ -14,7 +14,7 @@ function About() {
         <Div>
           <div>
             <Me>About me</Me>
-            <Img src={Profile} alt="Character" />
+            <Img src={Profile} alt="Me" />
             <Social>
               <div className="git-svg">
                 <a

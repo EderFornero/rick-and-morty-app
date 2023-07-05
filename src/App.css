@@ -14,15 +14,6 @@
   overflow-x: hidden;
 }
 
-.background:before {
-  content: "";
-  width: 100%;
-  min-height: 250vh;
-  background-color: rgb(76, 10, 104);
-  position: absolute;
-  opacity: 0.5;
-}
-
 .cards-div {
   width: 100%;
   min-height: 100vh;
@@ -202,21 +193,20 @@
   border-color: #fff;
 }
 
-
 /*about*/
 
-.git-svg{
+.git-svg {
   margin: 5px;
 }
 
-.git-svg:hover{
+.git-svg:hover {
   cursor: pointer;
 }
 
-.link-svg{
+.link-svg {
   margin: 5px;
 }
 
-.link-svg:hover{
+.link-svg:hover {
   cursor: pointer;
 }

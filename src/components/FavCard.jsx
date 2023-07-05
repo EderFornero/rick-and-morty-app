@@ -71,7 +71,7 @@ function FavCard({
           <p>Origin:</p> <Paragraph>{origin}</Paragraph>
         </Desc>
         <div className="card-image">
-          <img src={image} alt="Char" className="inside-image" />
+          <img src={image} alt={name} className="inside-image" />
         </div>
       </div>
     </Div>

@@ -40,23 +40,34 @@ function App() {
   };
 
   function onSearch(id) {
-    axios(`https://rickandmortyapi.com/api/character/${id}`).then(
-      ({ data }) => {
+    axios(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(({ data }) => {
         if (data.name) {
-          setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          window.alert("¡No hay personajes con este ID!");
+          let exist = characters.find((char) => char.id === data.id);
+          if (exist) {
+            alert("This character already exist");
+          } else {
+            setCharacters((oldChars) => [...oldChars, data]);
+          }
         }
-      }
-    );
+      })
+      .catch((error) => {
+        alert("Error: " + error.message);
+      });
   }
+
+  function addRandomCharacter() {
+    const randomId = Math.floor(Math.random() * 827);
+    onSearch(randomId);
+  }
+  
   const pathLocation = location.pathname !== "/";
 
   return (
     <div className="background">
       {pathLocation && (
         <div className="App">
-          <Nav onSearch={onSearch} />
+          <Nav onSearch={onSearch} onAddRandom={addRandomCharacter} />
         </div>
       )}
 

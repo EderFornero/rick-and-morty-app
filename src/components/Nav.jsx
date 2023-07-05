@@ -6,11 +6,12 @@ import styled from "styled-components";
 //router
 import { Link } from "react-router-dom";
 
-function Nav({ onSearch }) {
+function Nav({ onSearch, onAddRandom }) {
   return (
     <Div>
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <SearchBar onSearch={onSearch} />
+        <Button onClick={onAddRandom}>Random</Button>
       </div>
       <div>
         <Link to="/home">

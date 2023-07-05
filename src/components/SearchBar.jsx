@@ -24,6 +24,7 @@ export default function SearchBar({ onSearch }) {
       >
         Search
       </Button>
+      
     </Div>
   );
 }
