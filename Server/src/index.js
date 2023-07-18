@@ -1,20 +1,23 @@
-const http = require("http");
-const {getCharById} = require('./controllers/getCharById');
+const express = require("express");
+const server = require("express")();
+const router = require("./routes/index");
+const morgan = require('morgan');
+const port = 3001;
 
-http
-  .createServer((req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    if (req.url.includes("/rickandmorty/character")) {
-      const id = req.url.split("/").at(-1);
-      
-      getCharById(res, +id);
-      
-    } else {
-      res
-        .writeHead(404, {
-          "Content-type": "text/plain",
-        })
-        .end("Error 404: Endpoint not found");
-    }
-  })
-  .listen(3001);
+server.use(express.json());
+server.use(morgan('dev'))
+
+server.use((_req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
+
+server.use("/rickandmorty", router).listen(port, () => {
+  console.log("Current server on port: " + port);
+});

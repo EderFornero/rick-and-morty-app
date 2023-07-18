@@ -1,17 +1,41 @@
 import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./actions-type";
+import axios from "axios";
 
 export const addFav = (character) => {
-  return { type: ADD_FAV, payload: character };
+  const endpoint = "http://localhost:3001/rickandmorty/fav";
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(endpoint, character);
+      if (!data.length) throw Error("Favorites list is empty");
+      return dispatch({
+        type: ADD_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log("Error" + error.message);
+    }
+  };
 };
 
 export const removeFav = (id) => {
-  return { type: REMOVE_FAV, payload: id };
+  const endpoint = `http://localhost:3001/rickandmorty/fav/${id}`;
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(endpoint);
+      return dispatch({
+        type: REMOVE_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log("Error" + error);
+    }
+  };
 };
 
 export const filterCards = (gender) => {
-  return {type: FILTER, payload: gender};
-}
+  return { type: FILTER, payload: gender };
+};
 
 export const orderCards = (order) => {
-  return {type: ORDER, payload: order};
-}
+  return { type: ORDER, payload: order };
+};

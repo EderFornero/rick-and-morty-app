@@ -32,7 +32,7 @@ function Form({ login }) {
       <div className="form-container">
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-email">
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input
               placeholder="Write: 'test@gmail.com'"
               type="text"
@@ -45,7 +45,7 @@ function Form({ login }) {
             {errors.email && <p style={{ color: "white" }}>{errors.email}</p>}
           </div>
           <div className="form-email">
-            <label for="email">Password</label>
+            <label htmlFor="email">Password</label>
             <input
               placeholder="Write: '123ada'"
               type="password"

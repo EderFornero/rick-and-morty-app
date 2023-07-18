@@ -14,19 +14,24 @@ import axios from "axios";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Favorites from "./components/Favorites";
 
-const email = "test@gmail.com";
-const password = "123ada";
-
 function App() {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const login = (userData) => {
-    if (userData.email === email && userData.password === password) {
-      setAccess(true);
-      navigate("/home");
+  const login = async (userData) => {
+    const URL = "http://localhost:3001/rickandmorty/login/";
+    try {
+      const { email, password } = userData;
+      const { data } = await axios(
+        URL + `?email=${email}&password=${password}`
+      );
+      const { access } = data;
+      setAccess(access);
+      access && navigate("/home");
+    } catch (error) {
+      alert("Email or Password incorrect: " + error.message);
     }
   };
 
@@ -39,22 +44,24 @@ function App() {
     setCharacters(filtered);
   };
 
-  function onSearch(id) {
-    axios(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then(({ data }) => {
-        if (data.name) {
-          let exist = characters.find((char) => char.id === data.id);
-          if (exist) {
-            alert("This character already exist");
-          } else {
-            setCharacters((oldChars) => [...oldChars, data]);
-          }
+  const onSearch = async (id) => {
+    const { data } = await axios(
+      `http://localhost:3001/rickandmorty/character/${id}`
+    );
+
+    try {
+      if (data.name) {
+        let exist = characters.find((char) => char.id === data.id);
+        if (exist) {
+          alert("This character already exist");
+        } else {
+          setCharacters((oldChars) => [...oldChars, data]);
         }
-      })
-      .catch((error) => {
-        alert("Error: " + error.message);
-      });
-  }
+      }
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
+  };
 
   function addRandomCharacter() {
     const randomId = Math.floor(Math.random() * 827);
