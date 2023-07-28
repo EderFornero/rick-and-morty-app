@@ -4,7 +4,6 @@ const postFav = async (req, res) => {
 
     try {
         const {id, name, origin, status, species, image, gender} = req.body; 
-        console.log(id, name, origin, status, species, image, gender);
         const missingData = 'Missing data';
     
         !id || !name || !origin || !status || !species || !image || !gender 
